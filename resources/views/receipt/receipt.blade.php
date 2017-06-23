@@ -1,0 +1,1 @@
+<iframe src="{!! route('receipt') !!}" width="900" height="750"></iframe>
