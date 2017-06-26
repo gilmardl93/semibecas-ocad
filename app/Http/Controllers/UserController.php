@@ -65,35 +65,45 @@ class UserController extends Controller
 
     public function authenticate(Request $request)
     {
-        $rol = User::Rol($request->dni)->select('idrole')->get();
-        dd($rol);/*
-        $ObtenerID = Postulante::ValidarDNI($request->dni)->select('id')->get();
-        foreach($ObtenerID  as $row):
-            $ValidarProceso = Proceso::Validar($row->id)->get();
-            foreach($ValidarProceso as $row2):
-                $ValidarSolicitante = Solicitante::Validar($row->id)->get();
-                if ($ValidarSolicitante) 
-                {
-                    $data = new Solicitante();
-                    $data->idpostulante = $row->id;
-                    $data->save();
-                    if (Auth::attempt(['dni' => $request->dni, 'password' => $request->password, 'idrole' => 83])) {
-                        echo 1;
-                    }else 
+        $obtenerRol = User::Role($request->dni)->get();
+        foreach($obtenerRol as $rol):
+        if ($rol->idrole == 83)
+        {
+            echo 10;
+        }else if($rol->idrole == 13)
+        {
+            $ObtenerID = Postulante::ValidarDNI($request->dni)->get();
+            foreach($ObtenerID  as $row):
+                $ValidarProceso = Proceso::Validar($row->id)->get();
+                foreach($ValidarProceso as $row2):
+                    $ValidarSolicitante = Solicitante::Validar($row2->id)->count();
+                    if ($ValidarSolicitante == 0) 
                     {
-                        echo 0;
-                    }
-                }else 
-                {
-                    if (Auth::attempt(['dni' => $request->dni, 'password' => $request->password, 'idrole' => 83])) {
-                        echo 1;
-                    }else 
+                        $data = new Solicitante();
+                        $data->idpostulante = $row->id;
+                        $data->save();
+                        if (Auth::attempt(['dni' => $request->dni, 'password' => $request->password, 'idrole' => 13])) {
+                            echo 1;
+                        }else 
+                        {
+                            echo 0;
+                        }
+                    }else if($ValidarSolicitante == 1)
                     {
-                        echo 0;
+                        if (Auth::attempt(['dni' => $request->dni, 'password' => $request->password, 'idrole' => 13])) {
+                            echo 1;
+                        }else 
+                        {
+                            echo 0;
+                        }
                     }
-                }
+                endforeach;
             endforeach;
-        endforeach;*/
+        }else 
+        {
+            echo 0;
+        }            
+        endforeach;
         
     }
     
@@ -105,7 +115,7 @@ class UserController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect('/');
+        return redirect('/login');
     }
 
     protected function guard()
@@ -120,7 +130,7 @@ class UserController extends Controller
 
     public function receipt()
     {
-        $postulante = Postulante::where('numero_identificacion', Auth::user()->id)->get();
+        $postulante = Postulante::where('numero_identificacion', Auth::user()->dni)->get();
         foreach($postulante as $row):
         PDF::AddPage("L","A5");
         PDF::Image('logo-uni.jpg', 15, null, 25, null);
@@ -139,7 +149,7 @@ class UserController extends Controller
         PDF::setXY(30,70);
         PDF::Cell(60,10,"DNI",1,0,"R");
         PDF::setXY(90,70);
-        PDF::Cell(100,10,$row->dni,1);
+        PDF::Cell(100,10,Auth::user()->dni,1);
         PDF::setXY(30,80);
         PDF::Cell(60,10,"DATOS",1,0,"R");
         PDF::setXY(90,80);
@@ -178,14 +188,16 @@ class UserController extends Controller
 
     public function aplicant()
     {
-        $solicitantes = Proceso::Validar()->with('postulante')->get();
+        $solicitantes = Solicitante::with('postulante')->get();
         return view('aplicant.lists', compact('solicitantes'));
     }
     
     public function aplicantdata(Request $request)
     {
-        $data = Postulante::ValidarDNI($request->dni)->with(['especialidad','modalidad','colegio'])->get();
+        $data = Postulante::ValidarDNI($request->dni)->with(['especialidad','modalidad','colegio','documento'])->get();
+
         return view('aplicant.data', compact('data'));
     }
+
 
 }

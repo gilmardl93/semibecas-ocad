@@ -13,8 +13,7 @@
 
                         <h1 class="page-title"> Bienvenido 
                         </h1>
-                    @foreach($recaudacion as $row)
-                        @if($row->codigo != Auth::user()->dni)
+                        @if(count($recaudacion) == 0)
                         <div class="note note-danger">
                             <h3>Usted aun no ha realizado su pago</h3>
                             <p> Debe realizar el pago de su para que pueda cargar sus documentos. </p>
@@ -22,6 +21,7 @@
                         <iframe src="{!! route('receipt') !!}" width="700" height="550"></iframe>
                         @else
                         <div id="cargado"></div>
+                        <div id="error"></div>
                         <div class="row">
                             <div class="col-md-12">
 
@@ -203,7 +203,6 @@
                             </div>
                         </div>
                         @endif
-                    @endforeach
 
                 </div>
                 

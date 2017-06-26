@@ -12,4 +12,9 @@ class Solicitante extends Model
     {
         return $cadenaSQL->where('idpostulante', $id);
     }
+
+    public function postulante()
+    {
+        return $this->hasOne(Postulante::class,'id','idpostulante');
+    }
 }

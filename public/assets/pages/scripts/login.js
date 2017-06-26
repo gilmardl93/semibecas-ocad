@@ -3,9 +3,9 @@ var Login = function() {
     var handleLogin = function() {
 
         $('.login-form').validate({
-            errorElement: 'span', //default input error message container
-            errorClass: 'help-block', // default input error message class
-            focusInvalid: false, // do not focus the last invalid input
+            errorElement: 'span', 
+            errorClass: 'help-block', 
+            focusInvalid: false, 
             rules: {
                 username: {
                     required: true
@@ -27,13 +27,13 @@ var Login = function() {
                 }
             },
 
-            invalidHandler: function(event, validator) { //display error alert on form submit   
+            invalidHandler: function(event, validator) { 
                 $('.alert-danger', $('.login-form')).show();
             },
 
-            highlight: function(element) { // hightlight error inputs
+            highlight: function(element) { 
                 $(element)
-                    .closest('.form-group').addClass('has-error'); // set error class to the control group
+                    .closest('.form-group').addClass('has-error'); 
             },
 
             success: function(label) {
@@ -47,19 +47,22 @@ var Login = function() {
 
             submitHandler: function(form) {
                 var data = $('.login-form').serialize();
-                console.log(data);
                 $.ajax({
                     type    : "post",
                     url     : "authenticate",
                     data    : data,
                     success : function(echo)
                     {
-                        if (echo == 1)
+                        console.log(echo);
+                        if (echo == 10)
+                        {
+                            window.location ="admin";
+                        }else if(echo == 1)
                         {
                             window.location ="dashboard";
-                        }else
+                        }else 
                         {
-                            console.log("usuario no logeado");
+                            $("#error").html("Usuario y Contraseña incorrecta.").show();
                         }
                     }
                 });
@@ -69,7 +72,7 @@ var Login = function() {
         $('.login-form input').keypress(function(e) {
             if (e.which == 13) {
                 if ($('.login-form').validate().form()) {
-                    $('.login-form').submit(); //form validation success, call ajax form submit
+                    $('.login-form').submit(); 
                 }
                 return false;
             }
@@ -78,9 +81,9 @@ var Login = function() {
 
     var handleForgetPassword = function() {
         $('.forget-form').validate({
-            errorElement: 'span', //default input error message container
-            errorClass: 'help-block', // default input error message class
-            focusInvalid: false, // do not focus the last invalid input
+            errorElement: 'span', 
+            errorClass: 'help-block', 
+            focusInvalid: false, 
             ignore: "",
             rules: {
                 email: {

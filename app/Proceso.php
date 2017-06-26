@@ -13,11 +13,12 @@ class Proceso extends Model
         return $this->belongsTo(Postulante::class,'idpostulante','id');
     }
     
-    public function scopeValidar($cadenaSQL)
+    public function scopeValidar($cadenaSQL, $id)
     {
-        return $cadenaSQL->where('preinscripcion',true)
-                        ->where('datos_personales',true)
-                        ->where('datos_familiares',true)
-                        ->where('encuesta',true);
+        return $cadenaSQL->where('preinscripcion',1)
+                        ->where('datos_personales',1)
+                        ->where('datos_familiares',1)
+                        ->where('encuesta',1)
+                        ->where('idpostulante',$id);
     }
 }

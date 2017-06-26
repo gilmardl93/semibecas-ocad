@@ -13,8 +13,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function scopeRole($cadenaSQL, $rol)
+    public function scopeRole($cadenaSQL, $dni)
     {
-        return $cadenaSQL->where('idrole',$rol);
+        return $cadenaSQL->where('dni',$dni);
     }
 }

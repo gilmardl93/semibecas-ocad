@@ -1,4 +1,5 @@
 @extends('layouts.layout')
+
 @section('admin')
                 <div class="page-content-wrapper">
                     <div class="page-content">

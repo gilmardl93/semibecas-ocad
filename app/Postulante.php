@@ -34,6 +34,11 @@ class Postulante extends Model
         return $this->hasOne(Colegio::class, 'id', 'idcolegio');
     }
 
+    public function documento()
+    {
+        return $this->hasMany(Document::class,'userid','numero_identificacion');
+    }
+
     public function scopeValidarDNI($cadenaSQL, $dni)
     {
         return $cadenaSQL->where('numero_identificacion',$dni);

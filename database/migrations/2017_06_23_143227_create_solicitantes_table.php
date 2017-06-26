@@ -15,13 +15,13 @@ class CreateSolicitantesTable extends Migration
     {
         Schema::create('Semibecas.solicitantes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('idpostulante')->references('id')->on('postulante');
-            $table->integer('iduser')->references('id')->on('users');
-            $table->mediumText('observaciones');
-            $table->boolean('otorga');
-            $table->enum('descuento',['SEMIBECA','BECA INTEGRAL','DENEGADO']);
-            $table->integer('promedio');
-            $table->string('proceso');
+            $table->integer('idpostulante');
+            $table->integer('iduser')->nullable();
+            $table->mediumText('observaciones')->nullable();
+            $table->boolean('otorga')->nullable();
+            $table->enum('descuento',['SEMIBECA','BECA INTEGRAL','DENEGADO'])->nullable();
+            $table->integer('promedio')->nullable();
+            $table->string('proceso')->nullable();
             $table->timestamps();
         });
     }

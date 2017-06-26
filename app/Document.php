@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
-    protected $table = "Semibecas.documents";
+    protected $table = "Semibecas.documentos";
     
     public function getContarAttribute()
     {

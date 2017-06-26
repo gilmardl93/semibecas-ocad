@@ -10,8 +10,7 @@
                             </ul>
                         </div>
                         <br>
-                        @foreach($recaudacion as $row)
-                        @if($row->codigo != Auth::user()->dni)
+                        @if(count($recaudacion) == 0)
                         <div class="note note-danger">
                             <h3>Usted aun no ha realizado su pago</h3>
                             <p> Debe realizar el pago de su para que pueda cargar sus documentos. </p>
@@ -73,7 +72,6 @@
                                 </div>
                             </div>
                             @endif
-                            @endforeach
                         </div>
                     </div>
                 </div>

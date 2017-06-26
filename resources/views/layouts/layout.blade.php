@@ -85,7 +85,7 @@
                                     <span></span>
                                 </div>
                             </li>
-                            @if(Auth::user()->idrole == 83)
+                            @if(Auth::user()->idrole == 13)
                             <li class="nav-item start ">
                                 <a href="{!! url('download-document') !!}" class="nav-link nav-toggle">
                                     <i class="icon-home"></i>
@@ -111,9 +111,10 @@
                     </div>
 
                 </div>
-                @if(Auth::user()->idrole == 83)
+                
+                @if(Auth::user()->idrole == 13)
                     @yield('content')
-                @else
+                @else 
                     @yield('admin')
                 @endif
 
@@ -144,9 +145,47 @@
 
         {!! Html::script('assets/global/plugins/jquery-validation/js/jquery.validate.min.js') !!}
 
+
+        {!! Html::script('js/jquery_002.js') !!}
+        {!! Html::script('js/jquery_002.js') !!}
+
 <script>
     $(function(){
+        $("a#example1").fancybox();
+
         $("#aplicant-lists").load('aplicant-list');
+    });
+</script>
+<script>
+    $.validator.addMethod("valueNotEquals", function(value, element, arg){
+        return arg != value;
+    }, "Seleccione.");
+
+    $("#FrmAdd").validate({
+        rules : {
+            promedio : { required : true },
+            observaciones : { required : true },
+            otorga : { valueNotEquals : "SELECCIONE"}
+        },
+        messages : {
+            promedio : "Este campo es requerido",
+            observaciones : "Este campo es requerido"
+        },
+        submitHandler : function(form)
+        {
+            var data = $("#FrmAdd").serialize();
+            console.log(data);
+            $.ajax({
+                type    : "post",
+                url     : "aplicant",
+                data    : data,
+                cache   : false,
+                success : function()
+                {
+                    console.log("hola");
+                }
+            });
+        }
     });
 </script>
         <script>
@@ -166,10 +205,16 @@
                         cache: false,
                         contentType: false,
                         processData: false,
-                        success : function()
+                        success : function(echo)
                         {
-                            $("#cargado").html('<div class="note note-success"><h3>Documento cargado</h3><p> Si termino de cargar sus documentos presione FINALIZAR. </p></div>').show(1000);
-                            $("#cargado").hide(5000);                        
+                            if(echo == 0)
+                            {
+                                $("#cargado").html('<div class="note note-danger"><h3>Formato incorrecto</h3><p> Debe cargar su documento en formato JPG o PNG. </p></div>').show(1000);
+                            }else 
+                            {
+                                $("#cargado").html('<div class="note note-success"><h3>Documento cargado</h3><p> Si termino de cargar sus documentos presione FINALIZAR. </p></div>').show(1000);
+                                $("#cargado").hide(5000);  
+                            }                      
                         }
                     });
                 }

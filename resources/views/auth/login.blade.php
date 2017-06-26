@@ -36,10 +36,14 @@
         <div class="content">
             {!! Form::open(['id' => 'FrmLogin', 'class' => 'login-form']) !!}
                 <h3 class="form-title font-green">INICIAR SESION</h3>
+                <div class="alert alert-info ">
+                    <span> Usted debe estar registrado y haber completado todo su registro en el sistema de inscripcion. </span>
+                </div>
                 <div class="alert alert-danger display-hide">
                     <button class="close" data-close="alert"></button>
                     <span> Ingrese su DNI y su contraseña. </span>
                 </div>
+                <div id="error"></div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">DNI</label>
                     <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="DNI" name="dni" /> </div>
@@ -48,11 +52,6 @@
                     <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Contraseña" name="password" /> </div>
                 <div class="form-actions">
                     <button type="submit" class="btn green uppercase">ENTRAR</button>
-                </div>
-                <div class="create-account">
-                    <p>
-                        <a href="javascript:;" id="register-btn" class="uppercase">REGISTRO</a>
-                    </p>
                 </div>
             {!! Form::close() !!}
 
