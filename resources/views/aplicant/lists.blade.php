@@ -1,19 +1,15 @@
-
-        <link href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-
-        <link href="../assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
-        
-        <link href="../assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
-        <link href="../assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
-
+        {!! Html::style('assets/global/plugins/simple-line-icons/simple-line-icons.min.css') !!}
+        {!! Html::style('assets/global/plugins/bootstrap/css/bootstrap.min.css') !!}
+        {!! Html::style('assets/global/plugins/datatables/datatables.min.css') !!}
+        {!! Html::style('assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css') !!}
+        {!! Html::style('assets/global/css/components.min.css') !!}
+        {!! Html::style('assets/global/css/plugins.min.css') !!}
 
                                 <div class="portlet light form-fit bordered">
                                     <div class="portlet-body form">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
+                                                    <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
                                                         <thead>
                                                             <tr>
                                                                 <th> PATERNO </th>
@@ -25,7 +21,7 @@
                                                         </thead>
                                                         <tbody>
                                                             @foreach($solicitantes as $row)
-                                                            <tr class="odd gradeX">
+                                                            <tr>
                                                                 <td> {!! $row->postulante->paterno !!} </td>
                                                                 <td> {!! $row->postulante->materno !!} </td>
                                                                 <td> {!! $row->postulante->nombres !!} </td>
@@ -40,14 +36,10 @@
                                             </div>
                                     </div>
                                 </div>
-                            
-        <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-
-        <script src="../assets/global/scripts/datatable.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
-
-        <script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
-
-        <script src="../assets/pages/scripts/table-datatables-buttons.min.js" type="text/javascript"></script>
+        
+        {!! Html::script('assets/global/plugins/jquery.min.js') !!}
+        {!! Html::script('assets/global/plugins/bootstrap/js/bootstrap.min.js') !!}
+        {!! Html::script('assets/global/scripts/datatable.js') !!}
+        {!! Html::script('assets/global/plugins/datatables/datatables.min.js') !!}
+        {!! Html::script('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') !!}
+        {!! Html::script('assets/pages/scripts/table-datatables-buttons.min.js') !!}

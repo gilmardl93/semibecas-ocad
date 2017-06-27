@@ -26,6 +26,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('load6','DocumentController@load6');
     Route::post('load7','DocumentController@load7');
 
+    Route::get('uploaded-documents/{dni}','DocumentController@documents');
+    Route::get('delete-document/{id}','DocumentController@delete');
+
     Route::get('admin','UserController@admin');
 
     Route::post('add-aplicant','AplicantController@save');

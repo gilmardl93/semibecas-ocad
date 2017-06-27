@@ -60,9 +60,12 @@ var Login = function() {
                         }else if(echo == 1)
                         {
                             window.location ="dashboard";
-                        }else 
+                        }else if(echo == 0)
                         {
                             $("#error").html("Usuario y Contraseña incorrecta.").show();
+                        }else 
+                        {
+                            $("#error").html("Usted debe estar registrado y haber completado todo su registro en el sistema de inscripcion. ").show();
                         }
                     }
                 });

@@ -17,4 +17,12 @@ class Solicitante extends Model
     {
         return $this->hasOne(Postulante::class,'id','idpostulante');
     }
+
+    public function scopeInconcluso($cadenaSQL)
+    {
+        return $cadenaSQL->where('iduser','')
+                        ->where('observaciones','')
+                        ->where('promedio','')
+                        ->where('otorga','');
+    }
 }

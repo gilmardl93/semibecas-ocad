@@ -55,14 +55,9 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
                                     <li>
-                                        <a href="{{ url('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                        <a href="{!! url('logout') !!}">
                                             <i class="icon-key"></i> Cerrar Sesion </a>
                                         </a>
-                                        <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
                                     </li>
                                 </ul>
                             </li>
@@ -88,20 +83,20 @@
                             @if(Auth::user()->idrole == 13)
                             <li class="nav-item start ">
                                 <a href="{!! url('download-document') !!}" class="nav-link nav-toggle">
-                                    <i class="icon-home"></i>
+                                    <i class="fa fa-cloud-download"></i>
                                     <span class="title">DESCARGAR DOCUMENTOS</span>
                                 </a>
                             </li>
                             <li class="nav-item start ">
                                 <a href="{!! url('dashboard') !!}" class="nav-link nav-toggle">
-                                    <i class="icon-home"></i>
+                                    <i class="fa fa-upload"></i>
                                     <span class="title">CARGAR DOCUMENTOS</span>
                                 </a>
                             </li>
                             @else
                             <li class="nav-item start ">
                                 <a href="{!! url('admin') !!}" class="nav-link nav-toggle">
-                                    <i class="icon-home"></i>
+                                    <i class="fa fa-users"></i>
                                     <span class="title">SOLICITANTES</span>
                                 </a>
                             </li>
@@ -146,20 +141,8 @@
         {!! Html::script('assets/global/plugins/jquery-validation/js/jquery.validate.min.js') !!}
 
 
-        {!! Html::script('js/jquery_002.js') !!}
-        {!! Html::script('js/jquery_002.js') !!}
 
 <script>
-    $(function(){
-        $("a#example1").fancybox();
-
-        $("#aplicant-lists").load('aplicant-list');
-    });
-</script>
-<script>
-    $.validator.addMethod("valueNotEquals", function(value, element, arg){
-        return arg != value;
-    }, "Seleccione.");
 
     $("#FrmAdd").validate({
         rules : {

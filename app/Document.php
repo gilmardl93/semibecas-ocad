@@ -8,8 +8,18 @@ class Document extends Model
 {
     protected $table = "Semibecas.documentos";
     
-    public function getContarAttribute()
+    public function tipos()
     {
-        return count($this->document);
+        return $this->hasOne(Tipo::class,'id','tipo');
+    }
+
+    public function scopeValidar($cadenaSQL, $data)
+    {
+        return $cadenaSQL->where('userid',$data);
+    }
+
+    public function scopeActivo($cadenaSQL)
+    {
+        return $cadenaSQL->where('activo',true);
     }
 }

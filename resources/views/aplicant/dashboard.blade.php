@@ -30,6 +30,7 @@
                                         <div class="caption">
                                             <i class="icon-settings font-green"></i>
                                             <span class="caption-subject font-green sbold uppercase">CARGAR DOCUMENTOS</span>
+                                            <a href="{!! url('uploaded-documents/'.Auth::user()->dni) !!}" class="btn btn-info">DOCUMENTOS CARGADOS</a>
                                         </div>
                                     </div>
                                     <div class="portlet-body form">

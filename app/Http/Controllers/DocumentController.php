@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Document;
 
+
 class DocumentController extends Controller
 {
     public function load1(Request $request)
@@ -16,7 +17,7 @@ class DocumentController extends Controller
         {
             $request->file('carga1')->move('documentos',$nombre);
             $data = new Document();
-            $data->userid = Auth::user()->id;
+            $data->userid = Auth::user()->dni;
             $data->documento = $nombre;
             $data->tipo     = 1; 
             $data->save();
@@ -35,7 +36,7 @@ class DocumentController extends Controller
         {
             $request->file('carga2')->move('documentos',$nombre);
             $data = new Document();
-            $data->userid = Auth::user()->id;
+            $data->userid = Auth::user()->dni;
             $data->documento = $nombre;
             $data->tipo     = 2; 
             $data->save();
@@ -54,7 +55,7 @@ class DocumentController extends Controller
         {
             $request->file('carga3')->move('documentos',$nombre);
             $data = new Document();
-            $data->userid = Auth::user()->id;
+            $data->userid = Auth::user()->dni;
             $data->documento = $nombre;
             $data->tipo     = 3; 
             $data->save();
@@ -73,7 +74,7 @@ class DocumentController extends Controller
         {
             $request->file('carga4')->move('documentos',$nombre);
             $data = new Document();
-            $data->userid = Auth::user()->id;
+            $data->userid = Auth::user()->dni;
             $data->documento = $nombre;
             $data->tipo     = 4; 
             $data->save();
@@ -92,7 +93,7 @@ class DocumentController extends Controller
         {
             $request->file('carga5')->move('documentos',$nombre);
             $data = new Document();
-            $data->userid = Auth::user()->id;
+            $data->userid = Auth::user()->dni;
             $data->documento = $nombre;
             $data->tipo     = 5; 
             $data->save();
@@ -111,7 +112,7 @@ class DocumentController extends Controller
         {
             $request->file('carga6')->move('documentos',$nombre);
             $data = new Document();
-            $data->userid = Auth::user()->id;
+            $data->userid = Auth::user()->dni;
             $data->documento = $nombre;
             $data->tipo     = 6; 
             $data->save();
@@ -130,7 +131,7 @@ class DocumentController extends Controller
         {
             $request->file('carga7')->move('documentos',$nombre);
             $data = new Document();
-            $data->userid = Auth::user()->id;
+            $data->userid = Auth::user()->dni;
             $data->documento = $nombre;
             $data->tipo     = 7; 
             $data->save();
@@ -140,4 +141,18 @@ class DocumentController extends Controller
             echo 0;
         }
     }
+
+    public function documents(Request $request)
+    {
+        $documentos = Document::Validar($request->dni)->Activo()->with('tipos')->get();
+        return view('document.uploaded',['documentos' => $documentos]);
+    }
+
+    public function delete(Request $request)
+    {
+        Document::where('id',$request->id)->delete();
+
+        return redirect('dashboard');
+    }
+    
 }

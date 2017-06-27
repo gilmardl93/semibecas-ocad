@@ -10,6 +10,7 @@ use App\Postulante;
 use App\Recaudacion;
 use App\Proceso;
 use App\Solicitante;
+use App\Tipo;
 use PDF;
 
 class UserController extends Controller
@@ -69,35 +70,46 @@ class UserController extends Controller
         foreach($obtenerRol as $rol):
         if ($rol->idrole == 83)
         {
-            echo 10;
+            if (Auth::attempt(['dni' => $request->dni, 'password' => $request->password, 'idrole' => 83])) {
+                echo 10;
+            }else 
+            {
+                echo 0;
+            }
         }else if($rol->idrole == 13)
         {
             $ObtenerID = Postulante::ValidarDNI($request->dni)->get();
             foreach($ObtenerID  as $row):
                 $ValidarProceso = Proceso::Validar($row->id)->get();
-                foreach($ValidarProceso as $row2):
-                    $ValidarSolicitante = Solicitante::Validar($row2->id)->count();
-                    if ($ValidarSolicitante == 0) 
-                    {
-                        $data = new Solicitante();
-                        $data->idpostulante = $row->id;
-                        $data->save();
-                        if (Auth::attempt(['dni' => $request->dni, 'password' => $request->password, 'idrole' => 13])) {
-                            echo 1;
+                if($ValidarProceso != "")
+                {
+                    foreach($ValidarProceso as $row2):
+                        $ValidarSolicitante = Solicitante::Validar($row2->id)->count();
+                        if ($ValidarSolicitante == 0) 
+                        {
+                            $data = new Solicitante();
+                            $data->idpostulante = $row->id;
+                            $data->save();
+                            if (Auth::attempt(['dni' => $request->dni, 'password' => $request->password, 'idrole' => 13])) {
+                                echo 1;
+                            }else 
+                            {
+                                echo 0;
+                            }
                         }else 
                         {
-                            echo 0;
+                            if (Auth::attempt(['dni' => $request->dni, 'password' => $request->password, 'idrole' => 13])) {
+                                echo 1;
+                            }else 
+                            {
+                                echo 0;
+                            }
                         }
-                    }else if($ValidarSolicitante == 1)
-                    {
-                        if (Auth::attempt(['dni' => $request->dni, 'password' => $request->password, 'idrole' => 13])) {
-                            echo 1;
-                        }else 
-                        {
-                            echo 0;
-                        }
-                    }
-                endforeach;
+                    endforeach;
+                }else
+                {
+                    echo 3;
+                }                
             endforeach;
         }else 
         {
@@ -115,7 +127,7 @@ class UserController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect('/login');
+        return redirect('login');
     }
 
     protected function guard()
@@ -177,7 +189,8 @@ class UserController extends Controller
 
     public function admin()
     {
-        return view('admin.dashboard');
+        $solicitantes = Solicitante::with('postulante')->paginate(15);
+        return view('admin.dashboard', compact(['solicitantes']));
     }
     
     public function document()
@@ -194,9 +207,9 @@ class UserController extends Controller
     
     public function aplicantdata(Request $request)
     {
-        $data = Postulante::ValidarDNI($request->dni)->with(['especialidad','modalidad','colegio','documento'])->get();
-
-        return view('aplicant.data', compact('data'));
+        $data = Postulante::ValidarDNI($request->dni)->with(['especialidad','modalidad','colegio','documento','solicitante'])->get();
+        $documentos = Document::Validar($request->dni)->Activo()->with('tipos')->get();
+        return view('aplicant.data', ['data' => $data,'documentos' => $documentos]);
     }
 
 
