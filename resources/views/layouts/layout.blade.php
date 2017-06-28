@@ -81,20 +81,20 @@
                                 </div>
                             </li>
                             @if(Auth::user()->idrole == 13)
-                            <li class="nav-item start ">
+                            <li class="nav-item ">
                                 <a href="{!! url('download-document') !!}" class="nav-link nav-toggle">
                                     <i class="fa fa-cloud-download"></i>
                                     <span class="title">DESCARGAR DOCUMENTOS</span>
                                 </a>
                             </li>
-                            <li class="nav-item start ">
+                            <li class="nav-item ">
                                 <a href="{!! url('dashboard') !!}" class="nav-link nav-toggle">
                                     <i class="fa fa-upload"></i>
                                     <span class="title">CARGAR DOCUMENTOS</span>
                                 </a>
                             </li>
                             @else
-                            <li class="nav-item start ">
+                            <li class="nav-item ">
                                 <a href="{!! url('admin') !!}" class="nav-link nav-toggle">
                                     <i class="fa fa-users"></i>
                                     <span class="title">SOLICITANTES</span>

@@ -17,4 +17,9 @@ class User extends Authenticatable
     {
         return $cadenaSQL->where('dni',$dni);
     }
+
+    public function rol()
+    {
+        return $this->hasOne(Catalogo::class,'id','idrole');
+    }
 }

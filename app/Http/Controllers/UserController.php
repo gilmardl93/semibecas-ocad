@@ -68,17 +68,17 @@ class UserController extends Controller
 
     public function authenticate(Request $request)
     {              
-        $obtenerRol = User::Role($request->dni)->get();
+        $obtenerRol = User::Role($request->dni)->with('rol')->get();
         foreach($obtenerRol as $rol):
-        if ($rol->idrole == 83)
+        if ($rol->rol->codigo == "semibeca")
         {
-            if (Auth::attempt(['dni' => $request->dni, 'password' => $request->password, 'idrole' => 83])) {
+            if (Auth::attempt(['dni' => $request->dni, 'password' => $request->password])) {
                 echo 10;
             }else 
             {
                 echo 0;
             }
-        }else if($rol->idrole == 13)
+        }else if($rol->rol->codigo == "alum")
         {
             $Modalidad = Postulante::ValidarDNI($request->dni)->get();
             foreach($Modalidad as $moda):
@@ -103,7 +103,7 @@ class UserController extends Controller
                                         $data = new Solicitante();
                                         $data->idpostulante = $row->id;
                                         $data->save();
-                                        if (Auth::attempt(['dni' => $request->dni, 'password' => $request->password, 'idrole' => 13])) {
+                                        if (Auth::attempt(['dni' => $request->dni, 'password' => $request->password])) {
                                             echo 1;
                                         }else 
                                         {
@@ -111,7 +111,7 @@ class UserController extends Controller
                                         }
                                     }else 
                                     {
-                                        if (Auth::attempt(['dni' => $request->dni, 'password' => $request->password, 'idrole' => 13])) {
+                                        if (Auth::attempt(['dni' => $request->dni, 'password' => $request->password])) {
                                             echo 1;
                                         }else 
                                         {
