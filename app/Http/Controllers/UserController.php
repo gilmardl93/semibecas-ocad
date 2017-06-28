@@ -70,7 +70,7 @@ class UserController extends Controller
     {              
         $obtenerRol = User::Role($request->dni)->with('rol')->get();
         foreach($obtenerRol as $rol):
-        if ($rol->rol->codigo == "semibeca")
+        if (str_contains($rol->rol->codigo,["semibeca","root"]))
         {
             if (Auth::attempt(['dni' => $request->dni, 'password' => $request->password])) {
                 echo 10;

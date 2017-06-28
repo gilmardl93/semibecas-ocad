@@ -29,7 +29,7 @@
     <body class=" login">
 
         <div class="logo">
-            <a href="index.html">
+            <a href="">
                 <img src="../assets/pages/img/logo-big.png" alt="" /> </a>
         </div>
 
@@ -55,17 +55,6 @@
                     <a href="http://www.inscripciones.uni.edu.pe/password/reset" class="forget-password">Olvide mi clave </a>
                 </div>
             {!! Form::close() !!}
-
-            <form class="forget-form" action="index.html" method="post">
-                <h3 class="font-green">Olvide mi clave ?</h3>
-                <p> Enter your e-mail address below to reset your password. </p>
-                <div class="form-group">
-                    <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" /> </div>
-                <div class="form-actions">
-                    <button type="button" id="back-btn" class="btn green btn-outline">ATRAS</button>
-                    <button type="submit" class="btn btn-success uppercase pull-right">Submit</button>
-                </div>
-            </form>
 
             {!! Form::open(['id' => 'FrmRegistro', 'class' => 'register-form']) !!}
                 <h3 class="font-green">NUEVO</h3>
