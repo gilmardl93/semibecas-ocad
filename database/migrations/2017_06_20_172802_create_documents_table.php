@@ -15,7 +15,7 @@ class CreateDocumentsTable extends Migration
     {
         Schema::create('Semibecas.documentos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('userid');
+            $table->string('dni');
             $table->string('documento');
             $table->integer('tipo');
             $table->boolean('activo')->default(true);

@@ -24,25 +24,34 @@
                                     <div class="portlet light form-fit bordered">
                             <div class="portlet-body form">
                                 <div class="row">
-                                    <h2><b>DOCUMENTOS CARGADOS</b></h2>
-                                    @foreach($documentos as $row2)
-                                    <div class="col-md-4">
-                                        <div class="cbp-l-caption-title"><b>{!! $row2->tipos->descripcion !!}</b></div>
-                                    <a href="{!! url('delete-document/'.$row2->id )!!}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
-                                        <div class="cbp-item identity logos">
-                                            <a href="../documentos/{!! $row2->documento !!}" class="cbp-caption cbp-lightbox">
-                                                <div class="cbp-caption-defaultWrap">
-                                                    <img src="../documentos/{!! $row2->documento !!}" alt="" width="200" height="200"> </div>
-                                                <div class="cbp-caption-activeWrap">
-                                                    <div class="cbp-l-caption-alignLeft">
-                                                        <div class="cbp-l-caption-body">
+                                    @if($documentos->count() == 0)
+                                        <br>
+                                        <div class="note note-danger">
+                                                <h3>Usted aún no ha cargado ningún documento. </h3>
+                                                <p> <b>DEBE CARGAR TODOS LOS DOCUMENTOS PARA QUE PUEDA SER EVALUADO. </b>  </p>
+                                            </div>
+                                    @else 
+                                    
+                                        @foreach($documentos as $row2)
+                                        <div class="col-md-4">
+                                            <div class="cbp-l-caption-title"><b>{!! $row2->tipos->descripcion !!}</b></div>
+                                            <a href="{!! url('delete-document/'.$row2->id )!!}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                                                <div class="cbp-item identity logos">
+                                                    <a href="../documentos/{!! $row2->documento !!}" class="cbp-caption cbp-lightbox">
+                                                        <div class="cbp-caption-defaultWrap">
+                                                            <img src="../documentos/{!! $row2->documento !!}" alt="" width="200" height="200"> </div>
+                                                        <div class="cbp-caption-activeWrap">
+                                                            <div class="cbp-l-caption-alignLeft">
+                                                                <div class="cbp-l-caption-body">
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    </a>
                                                 </div>
-                                            </a>
                                         </div>
-                                    </div>
-                                    @endforeach
+                                        @endforeach
+                                    @endif
+                                    
                                 </div>
                             </div>
                         </div>

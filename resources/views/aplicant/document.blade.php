@@ -12,8 +12,8 @@
                         <br>
                         @if(count($recaudacion) == 0)
                         <div class="note note-danger">
-                            <h3>Usted aun no ha realizado su pago</h3>
-                            <p> Debe realizar el pago de su para que pueda cargar sus documentos. </p>
+                            <h3>Usted aún no ha realizado su pago</h3>
+                            <p> Debe realizar su pago para que pueda cargar sus documentos. </p>
                         </div>
                         @else
                         <div class="row">

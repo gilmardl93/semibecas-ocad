@@ -62,10 +62,13 @@ var Login = function() {
                             window.location ="dashboard";
                         }else if(echo == 0)
                         {
-                            $("#error").html("Usuario y Contraseña incorrecta.").show();
-                        }else 
+                            $("#error").html('<div class="note note-danger"><h5>Usuario y Contraseña Incorrecto. </h5><p>  </p></div>').show();
+                        }else if(echo == 3)
                         {
-                            $("#error").html("Usted debe estar registrado y haber completado todo su registro en el sistema de inscripcion. ").show();
+                            $("#error").html('<div class="note note-danger"><h5>Usted aún no ha completado todo su registro.</h5><p> Para completar su registro debe hacer click <a href="http://www.inscripciones.uni.edu.pe/login" target="_lblank" >aqui</a> </p></div>').show();
+                        }else if(echo == 4)
+                        {
+                            $("#error").html('<div class="note note-danger"><h5>Usted ya ha realizado los pagos. </h5><p> No puede solicitar SEMIBECA. </p></div>').show();
                         }
                     }
                 });

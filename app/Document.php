@@ -13,9 +13,9 @@ class Document extends Model
         return $this->hasOne(Tipo::class,'id','tipo');
     }
 
-    public function scopeValidar($cadenaSQL, $data)
+    public function scopeValidar($cadenaSQL, $dni)
     {
-        return $cadenaSQL->where('userid',$data);
+        return $cadenaSQL->where('dni',$dni);
     }
 
     public function scopeActivo($cadenaSQL)

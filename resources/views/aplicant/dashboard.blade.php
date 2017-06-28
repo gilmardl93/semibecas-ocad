@@ -10,13 +10,17 @@
                                 </li>
                             </ul>
                         </div>
-
-                        <h1 class="page-title"> Bienvenido 
-                        </h1>
+                        <br>
+                        <div class="m-heading-1 border-green m-bordered">
+                            <h3>Bienvenido al Modulo de SEMIBECA</h3>
+                            <p> Para poder participar en el proceso de SEMIBECA deberás seguir los siguientes pasos: </p>
+                            <p> Paso 1 : Debe realizar el pago de la solicitud de SEMIBECA. </p>
+                            <p> Paso 2 : Debe cargar los documentos solicitados para que pueda ser evaluado. </p>
+                        </div>
                         @if(count($recaudacion) == 0)
                         <div class="note note-danger">
-                            <h3>Usted aun no ha realizado su pago</h3>
-                            <p> Debe realizar el pago de su para que pueda cargar sus documentos. </p>
+                            <h3>Usted aún no ha realizado su pago</h3>
+                            <p> Debe realizar su pago para que pueda cargar sus documentos. </p>
                         </div>
                         <iframe src="{!! route('receipt') !!}" width="700" height="550"></iframe>
                         @else

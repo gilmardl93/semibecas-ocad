@@ -36,12 +36,22 @@ class Postulante extends Model
 
     public function documento()
     {
-        return $this->hasMany(Document::class,'userid','numero_identificacion');
+        return $this->hasMany(Document::class,'dni','numero_identificacion');
     }
 
     public function solicitante()
     {
         return $this->hasOne(Solicitante::class,'idpostulante','id');
+    }
+
+    public function familiar()
+    {
+        return $this->hasMany(Familiar::class,'idpostulante','id');
+    }
+
+    public function encuesta()
+    {
+        return $this->hasMany(Encuesta::class,'idpostulante','id');
     }
 
     public function scopeValidarDNI($cadenaSQL, $dni)

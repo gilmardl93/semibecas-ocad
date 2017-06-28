@@ -11,6 +11,8 @@ use App\Recaudacion;
 use App\Proceso;
 use App\Solicitante;
 use App\Tipo;
+use App\Familiar;
+use App\Encuesta;
 use PDF;
 
 class UserController extends Controller
@@ -65,7 +67,7 @@ class UserController extends Controller
     }
 
     public function authenticate(Request $request)
-    {
+    {              
         $obtenerRol = User::Role($request->dni)->get();
         foreach($obtenerRol as $rol):
         if ($rol->idrole == 83)
@@ -78,39 +80,57 @@ class UserController extends Controller
             }
         }else if($rol->idrole == 13)
         {
-            $ObtenerID = Postulante::ValidarDNI($request->dni)->get();
-            foreach($ObtenerID  as $row):
-                $ValidarProceso = Proceso::Validar($row->id)->get();
-                if($ValidarProceso != "")
+            $Modalidad = Postulante::ValidarDNI($request->dni)->get();
+            foreach($Modalidad as $moda):
+                if($moda->idmodalidad == 4 || $moda->idmodalidad == 5 || $moda->idmodalidad == 6 || $moda->idmodalidad == 7 || $moda->idmodalidad == 10 || $moda->idmodalidad == 12 || $moda->idmodalidad == 14 || $moda->idmodalidad == 15)
                 {
-                    foreach($ValidarProceso as $row2):
-                        $ValidarSolicitante = Solicitante::Validar($row2->id)->count();
-                        if ($ValidarSolicitante == 0) 
-                        {
-                            $data = new Solicitante();
-                            $data->idpostulante = $row->id;
-                            $data->save();
-                            if (Auth::attempt(['dni' => $request->dni, 'password' => $request->password, 'idrole' => 13])) {
-                                echo 1;
-                            }else 
-                            {
-                                echo 0;
-                            }
-                        }else 
-                        {
-                            if (Auth::attempt(['dni' => $request->dni, 'password' => $request->password, 'idrole' => 13])) {
-                                echo 1;
-                            }else 
-                            {
-                                echo 0;
-                            }
-                        }
-                    endforeach;
+                    echo 20;
                 }else
                 {
-                    echo 3;
-                }                
-            endforeach;
+                    $ObtenerPago = Recaudacion::ExistePago($request->dni)->count();
+                    if($ObtenerPago == 0)
+                    {
+                        $ObtenerID = Postulante::ValidarDNI($request->dni)->get();
+                        foreach($ObtenerID  as $row):
+                            $ValidarProceso = Proceso::Validar($row->id)->count();
+                            $ValidarProceso2 = Proceso::Validar($row->id)->get();
+                            if($ValidarProceso == 1)
+                            {
+                                foreach($ValidarProceso2 as $row2):
+                                    $ValidarSolicitante = Solicitante::Validar($row2->id)->count();
+                                    if ($ValidarSolicitante == 0) 
+                                    {
+                                        $data = new Solicitante();
+                                        $data->idpostulante = $row->id;
+                                        $data->save();
+                                        if (Auth::attempt(['dni' => $request->dni, 'password' => $request->password, 'idrole' => 13])) {
+                                            echo 1;
+                                        }else 
+                                        {
+                                            echo 0;
+                                        }
+                                    }else 
+                                    {
+                                        if (Auth::attempt(['dni' => $request->dni, 'password' => $request->password, 'idrole' => 13])) {
+                                            echo 1;
+                                        }else 
+                                        {
+                                            echo 0;
+                                        }
+                                    }
+                                endforeach;
+                            }else 
+                            {
+                            echo 3;
+                            }         
+                        endforeach;
+                    }else 
+                    {
+                        echo 4;
+                    }
+                    
+                }
+            endforeach;            
         }else 
         {
             echo 0;
@@ -183,19 +203,35 @@ class UserController extends Controller
 
     public function dashboard()
     {
-        $recaudacion = Recaudacion::where('codigo', Auth::user()->dni)->get();
+        $recaudacion = Recaudacion::where('codigo', Auth::user()->dni)->where('monto','5.000')->get();
         return view('aplicant.dashboard',['recaudacion' => $recaudacion]);
     }
 
     public function admin()
     {
-        $solicitantes = Solicitante::with('postulante')->paginate(15);
+        $solicitantes = Recaudacion::ValidarPagoSEMIBECA()->with(['solicitante','postulante'])->paginate(15);
         return view('admin.dashboard', compact(['solicitantes']));
+    }
+
+    public function search(Request $request)
+    {
+        if($request->dni == "")
+        {
+            return redirect('admin');
+        }else 
+        {
+            $obtenerDNI = Postulante::ValidarDNI($request->dni)->get();
+            foreach($obtenerDNI as $row):
+            $resultado = Solicitante::with('postulante')->where('idpostulante',$row->id)->get();
+            endforeach;
+            $solicitantes = Recaudacion::ValidarPagoSEMIBECA()->with(['solicitante','postulante'])->paginate(15);
+            return view('admin.result', compact(['resultado','solicitantes']));
+        }        
     }
     
     public function document()
     {
-        $recaudacion = Recaudacion::where('codigo', Auth::user()->dni)->get();
+        $recaudacion = Recaudacion::where('codigo', Auth::user()->dni)->where('monto','5.000')->get();
         return view('aplicant.document', ['recaudacion' => $recaudacion]);
     }
 
@@ -208,8 +244,13 @@ class UserController extends Controller
     public function aplicantdata(Request $request)
     {
         $data = Postulante::ValidarDNI($request->dni)->with(['especialidad','modalidad','colegio','documento','solicitante'])->get();
+        $obtenerDNI = Postulante::ValidarDNI($request->dni)->get();
+        foreach($obtenerDNI as $row):
+            $familiar = Familiar::where('idpostulante',$row->id)->get();
+            $encuesta = Encuesta::where('idpostulante',$row->id)->with(['razon','preparacion','academia','renuncia','ingreso'])->get();
+        endforeach;               
         $documentos = Document::Validar($request->dni)->Activo()->with('tipos')->get();
-        return view('aplicant.data', ['data' => $data,'documentos' => $documentos]);
+        return view('aplicant.data', ['data' => $data,'documentos' => $documentos, 'familiar' => $familiar, 'encuesta' => $encuesta]);
     }
 
 

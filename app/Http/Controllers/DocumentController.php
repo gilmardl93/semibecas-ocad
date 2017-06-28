@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Document;
 
-
 class DocumentController extends Controller
 {
     public function load1(Request $request)
@@ -17,7 +16,7 @@ class DocumentController extends Controller
         {
             $request->file('carga1')->move('documentos',$nombre);
             $data = new Document();
-            $data->userid = Auth::user()->dni;
+            $data->dni = Auth::user()->dni;
             $data->documento = $nombre;
             $data->tipo     = 1; 
             $data->save();
@@ -36,7 +35,7 @@ class DocumentController extends Controller
         {
             $request->file('carga2')->move('documentos',$nombre);
             $data = new Document();
-            $data->userid = Auth::user()->dni;
+            $data->dni = Auth::user()->dni;
             $data->documento = $nombre;
             $data->tipo     = 2; 
             $data->save();
@@ -55,7 +54,7 @@ class DocumentController extends Controller
         {
             $request->file('carga3')->move('documentos',$nombre);
             $data = new Document();
-            $data->userid = Auth::user()->dni;
+            $data->dni = Auth::user()->dni;
             $data->documento = $nombre;
             $data->tipo     = 3; 
             $data->save();
@@ -74,7 +73,7 @@ class DocumentController extends Controller
         {
             $request->file('carga4')->move('documentos',$nombre);
             $data = new Document();
-            $data->userid = Auth::user()->dni;
+            $data->dni = Auth::user()->dni;
             $data->documento = $nombre;
             $data->tipo     = 4; 
             $data->save();
@@ -88,12 +87,12 @@ class DocumentController extends Controller
     public function load5(Request $request)
     {
         $file = $request->file('carga5');
-        $nombre = Auth::user()->id.'-'.date("Y-m-d-h-i-s").'-5.'.pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+        $nombre = Auth::user()->dni.'-'.date("Y-m-d-h-i-s").'-5.'.pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
         if(pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION) == "jpg" || pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION) == "png")
         {
             $request->file('carga5')->move('documentos',$nombre);
             $data = new Document();
-            $data->userid = Auth::user()->dni;
+            $data->dni = Auth::user()->dni;
             $data->documento = $nombre;
             $data->tipo     = 5; 
             $data->save();
@@ -107,12 +106,12 @@ class DocumentController extends Controller
     public function load6(Request $request)
     {
         $file = $request->file('carga6');
-        $nombre = Auth::user()->id.'-'.date("Y-m-d-h-i-s").'-6.'.pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+        $nombre = Auth::user()->dni.'-'.date("Y-m-d-h-i-s").'-6.'.pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
         if(pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION) == "jpg" || pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION) == "png")
         {
             $request->file('carga6')->move('documentos',$nombre);
             $data = new Document();
-            $data->userid = Auth::user()->dni;
+            $data->dni = Auth::user()->dni;
             $data->documento = $nombre;
             $data->tipo     = 6; 
             $data->save();
@@ -126,12 +125,12 @@ class DocumentController extends Controller
     public function load7(Request $request)
     {
         $file = $request->file('carga7');
-        $nombre = Auth::user()->id.'-'.date("Y-m-d-h-i-s").'-7.'.pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+        $nombre = Auth::user()->dni.'-'.date("Y-m-d-h-i-s").'-7.'.pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
         if(pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION) == "jpg" || pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION) == "png")
         {
             $request->file('carga7')->move('documentos',$nombre);
             $data = new Document();
-            $data->userid = Auth::user()->dni;
+            $data->dni = Auth::user()->dni;
             $data->documento = $nombre;
             $data->tipo     = 7; 
             $data->save();

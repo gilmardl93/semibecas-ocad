@@ -35,7 +35,7 @@
                 <div class="page-header-inner ">
 
                     <div class="page-logo">
-                        <a href="index.html">
+                        <a href="">
                             <img src="../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
                         <div class="menu-toggler sidebar-toggler">
                             <span></span>
@@ -114,7 +114,7 @@
                 @endif
 
             <div class="page-footer">
-                <div class="page-footer-inner"> <?php echo date("Y");?> Todos los derechos reservados | gmoreno@admisionuni.edu.pe
+                <div class="page-footer-inner"> <?php echo date("Y");?> Oficina Central de Admisión OCAD <a href="http://www.admision.uni.edu.pe/" target="_blank">Admision - UNI</a>  |  <a href="http://www.uni.edu.pe/" target="_blank">Universidad Nacional de Ingeniería</a>
                 </div>
                 <div class="scroll-to-top">
                     <i class="icon-arrow-up"></i>
@@ -141,36 +141,6 @@
         {!! Html::script('assets/global/plugins/jquery-validation/js/jquery.validate.min.js') !!}
 
 
-
-<script>
-
-    $("#FrmAdd").validate({
-        rules : {
-            promedio : { required : true },
-            observaciones : { required : true },
-            otorga : { valueNotEquals : "SELECCIONE"}
-        },
-        messages : {
-            promedio : "Este campo es requerido",
-            observaciones : "Este campo es requerido"
-        },
-        submitHandler : function(form)
-        {
-            var data = $("#FrmAdd").serialize();
-            console.log(data);
-            $.ajax({
-                type    : "post",
-                url     : "aplicant",
-                data    : data,
-                cache   : false,
-                success : function()
-                {
-                    console.log("hola");
-                }
-            });
-        }
-    });
-</script>
         <script>
             $("#Frm1").validate({
                 rules : 
@@ -193,10 +163,10 @@
                             if(echo == 0)
                             {
                                 $("#cargado").html('<div class="note note-danger"><h3>Formato incorrecto</h3><p> Debe cargar su documento en formato JPG o PNG. </p></div>').show(1000);
-                            }else 
+                            }else if(echo == 1)
                             {
-                                $("#cargado").html('<div class="note note-success"><h3>Documento cargado</h3><p> Si termino de cargar sus documentos presione FINALIZAR. </p></div>').show(1000);
-                                $("#cargado").hide(5000);  
+                                $("#cargado").html('<div class="note note-success"><h3>Documento cargado</h3><p>  </p></div>').show(1000);
+                                $("#cargado").hide(3000);  
                             }                      
                         }
                     });
@@ -220,10 +190,16 @@
                         cache: false,
                         contentType: false,
                         processData: false,
-                        success : function()
+                        success : function(echo)
                         {
-                            $("#cargado").html('<div class="note note-success"><h3>Documento cargado</h3><p> Si termino de cargar sus documentos presione FINALIZAR. </p></div>').show(1000);
-                            $("#cargado").hide(5000);                        
+                            if(echo == 0)
+                            {
+                                $("#cargado").html('<div class="note note-danger"><h3>Formato incorrecto</h3><p> Debe cargar su documento en formato JPG o PNG. </p></div>').show(1000);
+                            }else if(echo == 1)
+                            {
+                                $("#cargado").html('<div class="note note-success"><h3>Documento cargado</h3><p>  </p></div>').show(1000);
+                                $("#cargado").hide(3000);  
+                            }                      
                         }
                     });
                 }
@@ -246,10 +222,16 @@
                         cache: false,
                         contentType: false,
                         processData: false,
-                        success : function()
+                        success : function(echo)
                         {
-                            $("#cargado").html('<div class="note note-success"><h3>Documento cargado</h3><p> Si termino de cargar sus documentos presione FINALIZAR. </p></div>').show(1000);
-                            $("#cargado").hide(5000);                        
+                            if(echo == 0)
+                            {
+                                $("#cargado").html('<div class="note note-danger"><h3>Formato incorrecto</h3><p> Debe cargar su documento en formato JPG o PNG. </p></div>').show(1000);
+                            }else if(echo == 1)
+                            {
+                                $("#cargado").html('<div class="note note-success"><h3>Documento cargado</h3><p>  </p></div>').show(1000);
+                                $("#cargado").hide(3000);  
+                            }                         
                         }
                     });
                 }
@@ -272,10 +254,16 @@
                         cache: false,
                         contentType: false,
                         processData: false,
-                        success : function()
+                        success : function(echo)
                         {
-                            $("#cargado").html('<div class="note note-success"><h3>Documento cargado</h3><p> Si termino de cargar sus documentos presione FINALIZAR. </p></div>').show(1000);
-                            $("#cargado").hide(5000);                        
+                            if(echo == 0)
+                            {
+                                $("#cargado").html('<div class="note note-danger"><h3>Formato incorrecto</h3><p> Debe cargar su documento en formato JPG o PNG. </p></div>').show(1000);
+                            }else if(echo == 1)
+                            {
+                                $("#cargado").html('<div class="note note-success"><h3>Documento cargado</h3><p>  </p></div>').show(1000);
+                                $("#cargado").hide(3000);  
+                            }                    
                         }
                     });
                 }
@@ -298,10 +286,16 @@
                         cache: false,
                         contentType: false,
                         processData: false,
-                        success : function()
+                        success : function(echo)
                         {                            
-                            $("#cargado").html('<div class="note note-success"><h3>Documento cargado</h3><p> Si termino de cargar sus documentos presione FINALIZAR. </p></div>').show(1000);
-                            $("#cargado").hide(5000);
+                            if(echo == 0)
+                            {
+                                $("#cargado").html('<div class="note note-danger"><h3>Formato incorrecto</h3><p> Debe cargar su documento en formato JPG o PNG. </p></div>').show(1000);
+                            }else if(echo == 1)
+                            {
+                                $("#cargado").html('<div class="note note-success"><h3>Documento cargado</h3><p>  </p></div>').show(1000);
+                                $("#cargado").hide(3000);  
+                            }  
                         }
                     });
                 }
@@ -324,10 +318,16 @@
                         cache: false,
                         contentType: false,
                         processData: false,
-                        success : function()
+                        success : function(echo)
                         {
-                            $("#cargado").html('<div class="note note-success"><h3>Documento cargado</h3><p> Si termino de cargar sus documentos presione FINALIZAR. </p></div>').show();
-                            $("#cargado").hide(5000);
+                            if(echo == 0)
+                            {
+                                $("#cargado").html('<div class="note note-danger"><h3>Formato incorrecto</h3><p> Debe cargar su documento en formato JPG o PNG. </p></div>').show(1000);
+                            }else if(echo == 1)
+                            {
+                                $("#cargado").html('<div class="note note-success"><h3>Documento cargado</h3><p>  </p></div>').show(1000);
+                                $("#cargado").hide(3000);  
+                            }  
                         }
                     });
                 }
@@ -350,10 +350,16 @@
                         cache: false,
                         contentType: false,
                         processData: false,
-                        success : function()
+                        success : function(echo)
                         {
-                            $("#cargado").html('<div class="note note-success"><h3>Documento cargado</h3><p> Si termino de cargar sus documentos presione FINALIZAR. </p></div>').show(1000);
-                            $("#cargado").hide(5000);
+                            if(echo == 0)
+                            {
+                                $("#cargado").html('<div class="note note-danger"><h3>Formato incorrecto</h3><p> Debe cargar su documento en formato JPG o PNG. </p></div>').show(1000);
+                            }else if(echo == 1)
+                            {
+                                $("#cargado").html('<div class="note note-success"><h3>Documento cargado</h3><p>  </p></div>').show(1000);
+                                $("#cargado").hide(5000);  
+                            }  
                         }
                     });
                 }

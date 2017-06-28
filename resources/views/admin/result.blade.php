@@ -38,7 +38,7 @@
                                         </div>
                                     </div>
                                     <div class="portlet-body">
-                                    {!! Form::open(['method' => 'post', 'url' => 'search-dni']) !!}
+                                    {!! Form::open(['method' => 'post', 'URL' => 'search-dni']) !!}
                                         <div class="row">
                                             <div class="col-md-1"></div>
                                             <div class="col-md-3">
@@ -78,7 +78,6 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                    {!! $solicitantes->links() !!}
                                     </div>
                                 </div>
                             </div>

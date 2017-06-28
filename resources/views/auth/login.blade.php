@@ -52,11 +52,12 @@
                     <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Contraseña" name="password" /> </div>
                 <div class="form-actions">
                     <button type="submit" class="btn green uppercase">ENTRAR</button>
+                    <a href="http://www.inscripciones.uni.edu.pe/password/reset" class="forget-password">Olvide mi clave </a>
                 </div>
             {!! Form::close() !!}
 
             <form class="forget-form" action="index.html" method="post">
-                <h3 class="font-green">Forget Password ?</h3>
+                <h3 class="font-green">Olvide mi clave ?</h3>
                 <p> Enter your e-mail address below to reset your password. </p>
                 <div class="form-group">
                     <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" /> </div>
@@ -96,7 +97,7 @@
             {!! Form::close() !!}
 
         </div>
-        <div class="copyright"> 2014 © Metronic. Admin Dashboard Template. </div>
+        <div class="copyright"> Oficina Central de Admisión. Universidad Nacional de Ingeniería . </div>
 
         {!! Html::script('assets/global/plugins/jquery.min.js') !!}
         {!! Html::script('assets/global/plugins/bootstrap/js/bootstrap.min.js') !!}

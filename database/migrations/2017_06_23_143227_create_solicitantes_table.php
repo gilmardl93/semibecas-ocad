@@ -18,8 +18,8 @@ class CreateSolicitantesTable extends Migration
             $table->integer('idpostulante');
             $table->integer('iduser')->nullable();
             $table->mediumText('observaciones')->nullable();
-            $table->boolean('otorga')->nullable();
-            $table->enum('descuento',['SEMIBECA','BECA INTEGRAL','DENEGADO'])->nullable();
+            $table->string('otorga')->nullable();
+            $table->boolean('cepreuni')->nullable();
             $table->integer('promedio')->nullable();
             $table->string('proceso')->nullable();
             $table->timestamps();

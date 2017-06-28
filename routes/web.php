@@ -7,6 +7,7 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Route::group(['middleware' => 'auth'], function(){
 
+    Route::get('/','UserController@dashboard');
     Route::get('dashboard','UserController@dashboard');
     Route::get('receipt','UserController@receipt')->name('receipt');
     Route::get('PDFreceipt','UserController@PDFreceipt');
@@ -28,6 +29,8 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('uploaded-documents/{dni}','DocumentController@documents');
     Route::get('delete-document/{id}','DocumentController@delete');
+
+    Route::post('search-dni','UserController@search');
 
     Route::get('admin','UserController@admin');
 

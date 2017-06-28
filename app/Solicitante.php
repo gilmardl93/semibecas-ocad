@@ -17,6 +17,11 @@ class Solicitante extends Model
     {
         return $this->hasOne(Postulante::class,'id','idpostulante');
     }
+    
+    public function recaudacion()
+    {
+        return $this->hasOne(Recaudacion::class,'idpostulante','idpostulante');
+    }
 
     public function scopeInconcluso($cadenaSQL)
     {
