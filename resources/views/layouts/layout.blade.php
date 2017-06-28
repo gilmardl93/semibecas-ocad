@@ -36,7 +36,7 @@
 
                     <div class="page-logo">
                         <a href="">
-                            <img src="../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
+                            <H3><B>SEMIBECA</B></H3> </a>
                         <div class="menu-toggler sidebar-toggler">
                             <span></span>
                         </div>
