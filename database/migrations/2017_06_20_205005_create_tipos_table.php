@@ -17,7 +17,6 @@ class CreateTiposTable extends Migration
             $table->increments('id');
             $table->string('descripcion');
             $table->boolean('activo')->default(true);
-            $table->timestamps();
         });
     }
 
