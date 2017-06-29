@@ -144,7 +144,6 @@ class DocumentController extends Controller
     public function documents(Request $request)
     {
         $documentos = Document::Validar($request->dni)->Activo()->with('tipos')->get();
-        dd($documentos->toArray());
         return view('document.uploaded',['documentos' => $documentos]);
     }
 
