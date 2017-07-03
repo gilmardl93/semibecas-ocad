@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Validator;
 use App\Solicitante;
+use DB;
 
 class AplicantController extends Controller
 {
@@ -42,5 +43,12 @@ class AplicantController extends Controller
         ]);
 
         return Redirect('admin');
+    }
+
+    public function reporteSemibeca()
+    {
+        PDF::AddPage("R","A4");
+        ob_end_clean();
+        PDF::Output('PERSONAS_QUE_HAN_OBTENIDO_LA_SEMIBECA.pdf');
     }
 }

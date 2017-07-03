@@ -38,4 +38,8 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('data/{dni}','UserController@aplicantdata');
 
+    Route::get('PDFsemibeca','ReportController@PDFSemibeca');
+    Route::get('PDFintegral','ReportController@PDFintegral');
+    Route::get('PDFdenegado','ReportController@PDFdenegado');
+
 });

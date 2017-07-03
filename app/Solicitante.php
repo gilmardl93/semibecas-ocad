@@ -22,14 +22,6 @@ class Solicitante extends Model
     {
         return $this->hasOne(Recaudacion::class,'idpostulante','idpostulante');
     }
-
-    public function scopeInconcluso($cadenaSQL)
-    {
-        return $cadenaSQL->where('iduser','')
-                        ->where('observaciones','')
-                        ->where('promedio','')
-                        ->where('otorga','');
-    }
     
     public function setOtorgaAttribute($value)
     {   
@@ -39,5 +31,28 @@ class Solicitante extends Model
             $this->attributes["tipo_descuento"] = 'Parcial';
         else 
             $this->attributes["tipo_descuento"] = '';
+    }
+
+    public function scopeSemibeca($cadenaSQL)
+    {
+        return $cadenaSQL->where('otorga','SEMIBECA');
+    }
+
+    public function scopeIntegral($cadenaSQL)
+    {
+        return $cadenaSQL->where('otorga','BECA INTEGRAL');
+    }
+
+    public function scopeDenegado($cadenaSQL)
+    {
+        return $cadenaSQL->where('otorga','DENEGADO');
+    }
+
+    public function scopeInconcluso($cadenaSQL)
+    {
+        return $cadenaSQL->where('iduser','')
+                        ->where('observaciones','')
+                        ->where('promedio','')
+                        ->where('otorga','');
     }
 }
