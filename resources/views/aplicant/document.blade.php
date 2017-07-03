@@ -29,7 +29,7 @@
                                     <div class="portlet-body form">
                                         <div class="row">
                                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                                <a class="dashboard-stat dashboard-stat-v2 blue" href="#">
+                                                <a class="dashboard-stat dashboard-stat-v2 blue" target="_lblank" href="{!! asset('DECLARACION_JURADA_SIMPLE_DE_INGRESOS_2017-2.pdf') !!}">
                                                     <div class="visual">
                                                         <i class="fa fa-comments"></i>
                                                     </div>
@@ -42,7 +42,7 @@
                                                 </a>
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                                <a class="dashboard-stat dashboard-stat-v2 blue" href="#">
+                                                <a class="dashboard-stat dashboard-stat-v2 blue" target="_lblank" href="{!! asset('FICHA_SOCIO_ECONOMICA_SEMIBECA_2017_2.pdf') !!}">
                                                     <div class="visual">
                                                         <i class="fa fa-comments"></i>
                                                     </div>
@@ -50,12 +50,12 @@
                                                         <div class="number">
                                                             <span data-counter="counterup" data-value=""></span>
                                                         </div>
-                                                        <div class="desc"> FICHA SOCIO ECONOMICA INGRESOS</div>
+                                                        <div class="desc"> FICHA SOCIO ECONOMICA </div>
                                                     </div>
                                                 </a>
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                                <a class="dashboard-stat dashboard-stat-v2 blue" href="#">
+                                                <a class="dashboard-stat dashboard-stat-v2 blue" target="_lblank" href="{!! asset('INGRESOS_Y_EGRESOS_ECONOMICOS_SEMIBECA_2017_2.pdf') !!}">
                                                     <div class="visual">
                                                         <i class="fa fa-comments"></i>
                                                     </div>

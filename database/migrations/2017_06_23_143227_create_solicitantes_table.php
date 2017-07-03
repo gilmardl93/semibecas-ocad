@@ -22,6 +22,10 @@ class CreateSolicitantesTable extends Migration
             $table->boolean('cepreuni')->nullable();
             $table->integer('promedio')->nullable();
             $table->string('proceso')->nullable();
+            $table->string('gestion')->nullable();
+            $table->string('dni')->nullable();
+            $table->string('tipo_descuento')->nullable();
+            $table->boolean('activo')->default(true);
             $table->timestamps();
         });
     }

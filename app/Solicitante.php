@@ -30,4 +30,14 @@ class Solicitante extends Model
                         ->where('promedio','')
                         ->where('otorga','');
     }
+    
+    public function setOtorgaAttribute($value)
+    {   
+        if($value == 'BECA INTEGRAL')
+            $this->attributes["tipo_descuento"] = 'Total';
+        else if($value == 'SEMIBECA')
+            $this->attributes["tipo_descuento"] = 'Parcial';
+        else 
+            $this->attributes["tipo_descuento"] = '';
+    }
 }

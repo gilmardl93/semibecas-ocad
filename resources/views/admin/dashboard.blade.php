@@ -69,8 +69,7 @@
                                                 <td> {!! $row->postulante->nombres !!} </td>
                                                 <td> {!! $row->postulante->numero_identificacion !!} </td>
                                                 <td> <?php if($row->solicitante->iduser != "" && $row->solicitante->observaciones != "" && $row->solicitante->otorga != "" && $row->solicitante->promedio != ""){ 
-                                                    echo '<span class="label label-primary">TERMINADO</span>';  
-                                                    }else{ ?> <a href="{!! url('data/'.$row->postulante->numero_identificacion) !!}">MAS INFORMACION</a> <?php } ?>
+                                                    echo '<span class="label label-primary">TERMINADO</span>';  }else{ ?> <a href="{!! url('data/'.$row->postulante->numero_identificacion) !!}">MAS INFORMACION</a> <?php } ?>
                                                  </td>
                                                 <td><?php if($row->solicitante->iduser != "" && $row->solicitante->observaciones != "" && $row->solicitante->otorga != "" && $row->solicitante->promedio != ""){ echo '<span class="label label-primary">TERMINADO</span>'; }else{ echo '<span class="label label-danger">INCONCLUSO</span>'; } ?> </td>
                                                 <td> {!! $row->solicitante->otorga !!} </td>

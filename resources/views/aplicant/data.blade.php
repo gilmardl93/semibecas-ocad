@@ -75,6 +75,9 @@
                                                 <input type="hidden" name="idpostulante" id="idpostulante" value="{!! $row->id !!}" >
                                                 <input type="hidden" name="iduser" id="iduser" value="{!! Auth::user()->id !!}" >
                                                 <div class="form-group">
+                                                    <input type="hidden" name="dni" id="dni" value="{!! $row->numero_identificacion !!}">
+                                                    <input type="hidden" name="gestion" id="gestion" value="{!! $row->colegio->gestion !!}">
+                                                    
                                                     {!! Form::label('PROMEDIO DE NOTA') !!}
                                                     {!! Form::text('promedio',$row->solicitante->promedio,['id' => 'promedio', 'class' => 'form-control']) !!}
                                                 </div>
@@ -121,13 +124,13 @@
                             <div class="portlet-body form">
                                 <div class="row">
                                     <h2><b>DOCUMENTOS CARGADOS</b></h2>
-                                    @foreach($documentos as $row2)
+                                    @foreach($documentos as $doc)
                                     <div class="col-md-4">
-                                        <div class="cbp-l-caption-title"><b>{!! $row2->tipos->descripcion !!}</b></div>
+                                        <div class="cbp-l-caption-title"><b>{!! $doc->tipos->descripcion !!}</b></div>
                                         <div class="cbp-item identity logos">
-                                            <a href="../documentos/{!! $row2->documento !!}" class="cbp-caption cbp-lightbox">
+                                            <a href="../documentos/{!! $doc->documento !!}" class="cbp-caption cbp-lightbox">
                                                 <div class="cbp-caption-defaultWrap">
-                                                    <img src="../documentos/{!! $row2->documento !!}" alt="" width="200" height="200"> </div>
+                                                    <img src="../documentos/{!! $doc->documento !!}" alt="" width="200" height="200"> </div>
                                                 <div class="cbp-caption-activeWrap">
                                                     <div class="cbp-l-caption-alignLeft">
                                                         <div class="cbp-l-caption-body">
@@ -138,7 +141,7 @@
                                         </div>
                                     </div>
                                     @endforeach
-                                    @if($documentos->count() == 0)
+                                    @if($documentos->count() < 0)
                                     <div class="note note-danger">
                                         <h3>El solicitante aún no ha cargado sus documentos. </h3>
                                         <p> <b>DEBE CARGAR TODOS LOS DOCUMENTOS PARA QUE PUEDA SER EVALUADO. </b>  </p>
