@@ -14,6 +14,7 @@ use App\Tipo;
 use App\Familiar;
 use App\Encuesta;
 use PDF;
+use DB;
 
 class UserController extends Controller
 {
@@ -210,9 +211,9 @@ class UserController extends Controller
     public function admin()
     {
         $solicitantes = Recaudacion::ValidarPagoSEMIBECA()->with(['solicitante','postulante'])->paginate(15);
-        $semibeca = Solicitante::Semibeca()->get();
-        $integral = Solicitante::Integral()->get();
-        $denegado = Solicitante::Denegado()->get();
+        $semibeca = Solicitante::Semibeca()->select(DB::raw('DISTINCT idpostulante'))->get();
+        $integral = Solicitante::Integral()->select(DB::raw('DISTINCT idpostulante'))->get();
+        $denegado = Solicitante::Denegado()->select(DB::raw('DISTINCT idpostulante'))->get();
         return view('admin.dashboard', compact(['solicitantes','semibeca','integral','denegado']));
     }
 
