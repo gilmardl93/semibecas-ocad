@@ -34,7 +34,7 @@
                                     </div>
                                     <div class="details">
                                         <div class="number">
-                                            <span data-counter="counterup" data-value="">{!! $semibeca->coutn() !!}</span>
+                                            <span data-counter="counterup" data-value="">{!! $semibeca->count() !!}</span>
                                         </div>
                                         <div class="desc"> TOTAL SEMIBECAS </div>
                                     </div>
