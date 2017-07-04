@@ -82,7 +82,7 @@ class UserController extends Controller
         {
             $Modalidad = Postulante::ValidarDNI($request->dni)->get();
             foreach($Modalidad as $moda):
-                if($moda->idmodalidad == 4 || $moda->idmodalidad == 5 || $moda->idmodalidad == 6 || $moda->idmodalidad == 7 || $moda->idmodalidad == 10 || $moda->idmodalidad == 12 || $moda->idmodalidad == 14 || $moda->idmodalidad == 15)
+                if($moda->idmodalidad == 5 || $moda->idmodalidad == 6 || $moda->idmodalidad == 7 || $moda->idmodalidad == 10 || $moda->idmodalidad == 12 || $moda->idmodalidad == 14 || $moda->idmodalidad == 15)
                 {
                     echo 20;
                 }else
@@ -210,7 +210,10 @@ class UserController extends Controller
     public function admin()
     {
         $solicitantes = Recaudacion::ValidarPagoSEMIBECA()->with(['solicitante','postulante'])->paginate(15);
-        return view('admin.dashboard', compact(['solicitantes']));
+        $semibeca = Solicitante::Semibeca()->select('idpostulante')->get();
+        $integral = Solicitante::Integral()->get();
+        $denegado = Solicitante::Denegado()->get();
+        return view('admin.dashboard', compact(['solicitantes','semibeca','integral','denegado']));
     }
 
     public function search(Request $request)
