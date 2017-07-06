@@ -42,4 +42,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('PDFintegral','ReportController@PDFintegral');
     Route::get('PDFdenegado','ReportController@PDFdenegado');
 
+    Route::get('download-report','ReportController@Download');
+
+    Route::get('reportExcel','ReportController@ReportExcel');
 });

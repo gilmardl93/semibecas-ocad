@@ -6,7 +6,7 @@
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
                                 <li>
-                                    <a href="index.html">Panel de Control</a>
+                                    <a href="">Panel de Control</a>
                                 </li>
                             </ul>
                         </div>

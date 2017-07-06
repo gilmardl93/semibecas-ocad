@@ -8,6 +8,7 @@ class Solicitante extends Model
 {
     protected $table  = "Semibecas.solicitantes";
 
+
     public function scopeValidar($cadenaSQL, $id)
     {
         return $cadenaSQL->where('idpostulante', $id);
@@ -54,5 +55,35 @@ class Solicitante extends Model
                         ->where('observaciones','')
                         ->where('promedio','')
                         ->where('otorga','');
+    }
+
+    public function colegio()
+    {
+        return $this->hasOne(Colegio::class, 'id', 'idcolegio');
+    }
+
+    public function documento()
+    {
+        return $this->hasMany(Document::class,'dni','numero_identificacion');
+    }
+
+    public function solicitante()
+    {
+        return $this->hasOne(Solicitante::class,'idpostulante','id');
+    }
+
+    public function familiar()
+    {
+        return $this->hasMany(Familiar::class,'idpostulante','id');
+    }
+
+    public function encuesta()
+    {
+        return $this->hasMany(Encuesta::class,'idpostulante','id');
+    }
+
+    public function sexo()
+    {
+        return $this->hasOne(Catalogo::class,'id','idsexo');
     }
 }

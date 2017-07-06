@@ -3,11 +3,31 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 use DB;
 
 class Postulante extends Model
 {
     protected $table = "postulante";
+
+    public function getEdadAttribute()
+    {
+        if(isset($this->fecha_nacimiento))$edad = Carbon::createFromFormat('Y-m-d',$this->fecha_nacimiento)->age;
+        else $edad = 0;
+
+        return $edad;
+
+    }
+
+    public function getNombreCompletoAttribute()
+    {
+        return $this->paterno.' '.$this->materno.' '.$this->nombres;
+    }
+
+    public function scopeValidarDNI($cadenaSQL, $dni)
+    {
+        return $cadenaSQL->where('numero_identificacion',$dni);
+    }
 
     public function recaudacion()
     {       
@@ -34,28 +54,18 @@ class Postulante extends Model
         return $this->hasOne(Colegio::class, 'id', 'idcolegio');
     }
 
-    public function documento()
-    {
-        return $this->hasMany(Document::class,'dni','numero_identificacion');
-    }
-
-    public function solicitante()
-    {
-        return $this->hasOne(Solicitante::class,'idpostulante','id');
-    }
-
     public function familiar()
     {
         return $this->hasMany(Familiar::class,'idpostulante','id');
     }
 
-    public function encuesta()
+    public function sexo()
     {
-        return $this->hasMany(Encuesta::class,'idpostulante','id');
+        return $this->hasOne(Catalogo::class,'id','idsexo');
     }
 
-    public function scopeValidarDNI($cadenaSQL, $dni)
+    public function solicitante()
     {
-        return $cadenaSQL->where('numero_identificacion',$dni);
+        return $this->hasOne(Solicitante::class,'idpostulante','id');
     }
 }

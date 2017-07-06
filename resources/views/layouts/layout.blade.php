@@ -100,6 +100,12 @@
                                     <span class="title">SOLICITANTES</span>
                                 </a>
                             </li>
+                            <li class="nav-item ">
+                                <a href="{!! url('download-report') !!}" class="nav-link nav-toggle">
+                                    <i class="fa fa-cloud-download"></i>
+                                    <span class="title">REPORTES</span>
+                                </a>
+                            </li>
                             @endif
                         </ul>
 
