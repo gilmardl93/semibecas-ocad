@@ -247,7 +247,7 @@ class UserController extends Controller
     
     public function aplicantdata(Request $request)
     {
-        $data = Postulante::ValidarDNI($request->dni)->with(['especialidad','modalidad','colegio','documento','solicitante'])->get();
+        $data = Postulante::ValidarDNI($request->dni)->with(['especialidad','modalidad','colegio','solicitante'])->get();
         $obtenerDNI = Postulante::ValidarDNI($request->dni)->get();
         foreach($obtenerDNI as $row):
             $familiar = Familiar::where('idpostulante',$row->id)->get();
