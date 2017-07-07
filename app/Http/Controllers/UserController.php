@@ -166,7 +166,7 @@ class UserController extends Controller
         $postulante = Postulante::where('numero_identificacion', Auth::user()->dni)->get();
         foreach($postulante as $row):
         PDF::AddPage("L","A5");
-        PDF::Image('logo-uni.jpg', 15, null, 25, null);
+        PDF::Image('logo-scotiabank.png', 5, 5, 55, 30);
         PDF::setFont('Helvetica','',24);
         PDF::setXY(60,20);        
         PDF::Cell(60,10,"FORMATO DE PAGO");
@@ -193,8 +193,6 @@ class UserController extends Controller
         PDF::Cell(100,10,"S/. 5.00",1);
         PDF::setXY(30,100);
         PDF::Cell(100,10,"INSTRUCCIONES PARA EL SOLICITANTE");
-        PDF::setXY(30,110);
-        PDF::Cell(100,10,"1. El pago debe realizar en el Banco o Agencias SCOTIABANK.");
         PDF::setXY(30,110);
         PDF::Cell(100,10,"2. Verificar que los datos registrados en la parte superior sean los correctos.");
         PDF::setXY(30,115);
