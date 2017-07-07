@@ -181,7 +181,7 @@
                                                 {!! Form::close() !!}
                                                 {!! Form::open(['id' => 'Frm7', 'class' => 'form-horizontal form-bordered']) !!}
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-4">7. Formato de registro de datos que tiene que escanearlo enviar por internet según la guía de procedimientos.</label>
+                                                    <label class="control-label col-md-4">7. Debe descargar los documentos y volver a cargarlos haciendo CLICK en el boton SELECCIONE del recuadro de la derecha --></label>
                                                     <div class="col-md-5">
                                                         <div class="fileinput fileinput-new" data-provides="fileinput">
                                                             <div class="input-group input-large">
@@ -214,3 +214,5 @@
             </div>
 
 @endsection
+
+9035990000130502
