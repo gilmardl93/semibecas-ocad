@@ -194,9 +194,11 @@ class UserController extends Controller
         PDF::setXY(30,100);
         PDF::Cell(100,10,"INSTRUCCIONES PARA EL SOLICITANTE");
         PDF::setXY(30,110);
-        PDF::Cell(100,10,"1. Verificar que los datos registrados en la parte superior sean los correctos.");
+        PDF::Cell(100,10,"1. El pago debe realizar en el Banco o Agencias SCOTIABANK.");
+        PDF::setXY(30,110);
+        PDF::Cell(100,10,"2. Verificar que los datos registrados en la parte superior sean los correctos.");
         PDF::setXY(30,115);
-        PDF::Cell(100,10,"2. Verificar que el nombre sea del solicitante no del apoderado o de quien pague.");
+        PDF::Cell(100,10,"3. Verificar que el nombre sea del solicitante no del apoderado o de quien pague.");
         endforeach;
         ob_end_clean();
         PDF::Output('RECIBO_SEMIBECA_5_SOLES.pdf');
