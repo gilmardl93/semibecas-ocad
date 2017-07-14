@@ -210,12 +210,13 @@ class UserController extends Controller
 
     public function admin()
     {
+        //hola que hace
         $solicitantes = Recaudacion::ValidarPagoSEMIBECA()->with(['solicitante','postulante'])->paginate(15);
         $semibeca = Solicitante::Semibeca()->get();
         $integral = Solicitante::Integral()->get();
         $denegado = Solicitante::Denegado()->get();
         return view('admin.dashboard', compact(['solicitantes','semibeca','integral','denegado']));
-    }
+    } 
 
     public function search(Request $request)
     {
