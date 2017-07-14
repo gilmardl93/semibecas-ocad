@@ -83,7 +83,7 @@ class UserController extends Controller
         {
             $Modalidad = Postulante::ValidarDNI($request->dni)->get();
             foreach($Modalidad as $moda):
-                if($moda->idmodalidad == 5 || $moda->idmodalidad == 6 || $moda->idmodalidad == 7 || $moda->idmodalidad == 10 || $moda->idmodalidad == 12 || $moda->idmodalidad == 14 || $moda->idmodalidad == 15)
+                if($moda->idmodalidad == 1 || $moda->idmodalidad == 2 || $moda->idmodalidad == 3 || $moda->idmodalidad == 5 || $moda->idmodalidad == 6 || $moda->idmodalidad == 7 || $moda->idmodalidad == 8 || $moda->idmodalidad == 9 || $moda->idmodalidad == 10 || $moda->idmodalidad == 12 || $moda->idmodalidad == 13 || $moda->idmodalidad == 14 || $moda->idmodalidad == 15)
                 {
                     echo 20;
                 }else
@@ -211,9 +211,9 @@ class UserController extends Controller
     public function admin()
     {
         $solicitantes = Recaudacion::ValidarPagoSEMIBECA()->with(['solicitante','postulante'])->paginate(15);
-        $semibeca = Solicitante::Semibeca()->select(DB::raw('DISTINCT idpostulante'))->get();
-        $integral = Solicitante::Integral()->select(DB::raw('DISTINCT idpostulante'))->get();
-        $denegado = Solicitante::Denegado()->select(DB::raw('DISTINCT idpostulante'))->get();
+        $semibeca = Solicitante::Semibeca()->get();
+        $integral = Solicitante::Integral()->get();
+        $denegado = Solicitante::Denegado()->get();
         return view('admin.dashboard', compact(['solicitantes','semibeca','integral','denegado']));
     }
 

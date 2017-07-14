@@ -27,45 +27,6 @@
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                               <a class="dashboard-stat dashboard-stat-v2 yellow" href="#">
-                                    <div class="visual">
-                                        <i class="fa fa-comments"></i>
-                                    </div>
-                                    <div class="details">
-                                        <div class="number">
-                                            <span data-counter="counterup" data-value="">{!! $semibeca->count() !!}</span>
-                                        </div>
-                                        <div class="desc"> TOTAL SEMIBECAS </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                               <a class="dashboard-stat dashboard-stat-v2 green" href="#">
-                                    <div class="visual">
-                                        <i class="fa fa-comments"></i>
-                                    </div>
-                                    <div class="details">
-                                        <div class="number">
-                                            <span data-counter="counterup" data-value="">{!! $integral->count() !!}</span>
-                                        </div>
-                                        <div class="desc"> TOTAL BECA INTEGRAL </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                               <a class="dashboard-stat dashboard-stat-v2 red" href="#">
-                                    <div class="visual">
-                                        <i class="fa fa-comments"></i>
-                                    </div>
-                                    <div class="details">
-                                        <div class="number">
-                                            <span data-counter="counterup" data-value="">{!! $denegado->count() !!}</span>
-                                        </div>
-                                        <div class="desc"> TOTAL DENEGADO </div>
-                                    </div>
-                                </a>
-                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">

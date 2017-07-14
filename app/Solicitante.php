@@ -8,7 +8,6 @@ class Solicitante extends Model
 {
     protected $table  = "Semibecas.solicitantes";
 
-
     public function scopeValidar($cadenaSQL, $id)
     {
         return $cadenaSQL->where('idpostulante', $id);
@@ -65,11 +64,6 @@ class Solicitante extends Model
     public function documento()
     {
         return $this->hasMany(Document::class,'dni','numero_identificacion');
-    }
-
-    public function solicitante()
-    {
-        return $this->hasOne(Solicitante::class,'idpostulante','id');
     }
 
     public function familiar()
